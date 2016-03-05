@@ -1,0 +1,23 @@
+{
+  "name": "KFZconvert",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "async": "^1.5.2",
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "file-api": "^0.10.4",
+    "fs": "0.0.2",
+    "grunt": "^0.4.5",
+    "grunt-http-server": "^1.14.0",
+    "jade": "~1.11.0",
+    "moment": "^2.11.2",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0"
+  }
+}

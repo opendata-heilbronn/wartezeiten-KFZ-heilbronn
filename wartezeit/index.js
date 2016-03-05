@@ -266,7 +266,7 @@ $(function(){
 			$('#number').text(nextcall);
 			$('#minutes').text("ca. " + wait + " Minuten Wartezeit");
 		} else {
-			$('#minutes').text(response[0].lastupdate);
+			$('#minutes').text("Keine Daten");
 			$('#number').text("-");
 		}
 		setInterval(updateFunction, 60000);

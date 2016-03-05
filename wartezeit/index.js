@@ -258,15 +258,18 @@ d3.json("dataAllExport.json",
 });
 
 $(function(){
-	$.getJSON('kfz.json', null, function(response){
+	var updateFunction = function(){
+	$.getJSON('http://api.grundid.de/lkhn/registration', null, function(response){
 		var nextcall = response[0].nextcall;
 		var wait = response[0].wait;
 		if(nextcall > 0) {
 			$('#number').text(nextcall);
 			$('#minutes').text("ca. " + wait + " Minuten Wartezeit");
 		} else {
-			$('#number').text("GESCHLOSSEN");
+			$('#minutes').text(response[0].lastupdate);
+			$('#number').text("-");
 		}
-
-	});
+		setInterval(updateFunction, 60000);
+	});};
+	updateFunction();
 });

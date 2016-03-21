@@ -5,18 +5,20 @@ var fs = require('fs');
 var momentLibrary = require('moment');
 var async = require('async');
 
+var serverSource = "/var/opt/wartezeiten_lk";
+
 var openingHours = { '0': {'from': 7, 'to': 15},
                      '1': {'from': 7, 'to': 15},
                      '2': {'from': 7, 'to': 18},
                      '3': {'from': 7, 'to': 15},
                      '4': {'from': 7, 'to': 13}};
 var data = {};
-var files = fs.readdirSync('data');
+var files = fs.readdirSync(serverSource);
 var jsonObjects = [];
 var file;
 
 function fill(v) {
-    file = fs.readFileSync('data/' + v, 'utf8');
+    file = fs.readFileSync(serverSource+'/' + v, 'utf8');
     if(file)
         jsonObjects.push(JSON.parse(file));
 }
@@ -134,7 +136,7 @@ function prepareExport() {
 
 prepareExport();
 
-fs.writeFileSync("wartezeit/dataAllExport.json", JSON.stringify(dataAllExport));
+fs.writeFileSync("dataAllExport.json", JSON.stringify(dataAllExport));
 
 for(var key in dataExport){
     fs.writeFileSync(key+".json", JSON.stringify(dataExport[key]));

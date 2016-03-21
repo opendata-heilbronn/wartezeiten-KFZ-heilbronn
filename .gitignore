@@ -2,3 +2,5 @@
 node_modules
 *.iml
 data
+dataAllExport.json
+data.json

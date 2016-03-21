@@ -138,6 +138,8 @@ prepareExport();
 
 fs.writeFileSync("dataAllExport.json", JSON.stringify(dataAllExport));
 
+/*
 for(var key in dataExport){
-    fs.writeFileSync(key+".json", JSON.stringify(dataExport[key]));
+    fs.writeFileSync("data-"+key+".json", JSON.stringify(dataExport[key]));
 }
+*/

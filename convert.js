@@ -17,7 +17,7 @@ var files = fs.readdirSync(serverSource);
 var jsonObjects = [];
 var file;
 
-var dateLimit = momentLibrary().day("Monday").subtract(7, 'weeks');
+var dateLimit = momentLibrary().day("Monday").hour(0).minute(0).subtract(7, 'weeks');
 
 console.log("DateLimit: "+dateLimit.format());
 

@@ -42,12 +42,6 @@ function convert(v) {
     var weekday = lastUpdate.isoWeekday() -1;
     var hour = lastUpdate.hour();
 
-	var copy = lastUpdate;
-	var timeDif =  parseInt(copy.format('x')) - parseInt(copy.subtract(removeDays[copy.format('ddd')], 'days').subtract(7, 'months').format('x'));
-    if(timeDif > 18408222000){
-		return;
-	}
-
     var weekdayOpeningHours = openingHours[weekday];
 
     if(weekdayOpeningHours != null && hour >= weekdayOpeningHours.from && hour < weekdayOpeningHours.to)

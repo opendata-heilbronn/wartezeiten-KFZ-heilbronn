@@ -25,12 +25,27 @@ function fill(v) {
 
 files.forEach(fill);
 
+var removeDays = {
+	"Mon": 0,
+	"Tue": 1,
+	"Wed": 2,
+	"Thu": 3,
+	"Fri": 4,
+	"Sat": 5,
+	"Sun": 6
+}
+
 function convert(v) {
     var lastUpdate = momentLibrary(v[0].lastupdate);
     var year = lastUpdate.year();
     var week = lastUpdate.week();
     var weekday = lastUpdate.isoWeekday() -1;
     var hour = lastUpdate.hour();
+
+	var timeDif =  parseInt(lastUpdate.format('x')) - parseInt(lastUpdate.subtract(removeDays[lastUpdate.format('ddd')], 'days').subtract(7, 'months').format('x'));
+    if(timeDif >= 18408222000){
+		return;
+	}
 
     var weekdayOpeningHours = openingHours[weekday];
 

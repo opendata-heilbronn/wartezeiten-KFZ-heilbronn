@@ -37,16 +37,17 @@ var removeDays = {
 
 function convert(v) {
     var lastUpdate = momentLibrary(v[0].lastupdate);
-    var year = lastUpdate.year();
-    var week = lastUpdate.week();
-    var weekday = lastUpdate.isoWeekday() -1;
-    var hour = lastUpdate.hour();
 
 	var copy = moment();
 	var timeDif = parseInt(copy.subtract(removeDays[copy.format('ddd')], 'days').subtract(7, 'weeks').format('x'));
     if( parseInt(lastUpdate.format('x')) < timeDif){
 		return;
 	}
+    
+    var year = lastUpdate.year();
+    var week = lastUpdate.week();
+    var weekday = lastUpdate.isoWeekday() -1;
+    var hour = lastUpdate.hour();
 
     var weekdayOpeningHours = openingHours[weekday];
 

@@ -42,9 +42,9 @@ function convert(v) {
     var weekday = lastUpdate.isoWeekday() -1;
     var hour = lastUpdate.hour();
 
-	var copy = lastUpdate;
-	var timeDif =  parseInt(copy.format('x')) - parseInt(copy.subtract(removeDays[copy.format('ddd')], 'days').subtract(7, 'weeks').format('x'));
-    if(timeDif > moment().format('x')){
+	var copy = moment();
+	var timeDif = parseInt(copy.subtract(removeDays[copy.format('ddd')], 'days').subtract(7, 'weeks').format('x'));
+    if( parseInt(lastUpdate.format('x')) < timeDif){
 		return;
 	}
 

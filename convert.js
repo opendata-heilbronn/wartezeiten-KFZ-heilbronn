@@ -17,6 +17,10 @@ var files = fs.readdirSync(serverSource);
 var jsonObjects = [];
 var file;
 
+var dateLimit = moment().day("Monday").subtract(7, 'weeks');
+
+console.log("DateLimit: "+dateLimit.format());
+
 function fill(v) {
     file = fs.readFileSync(serverSource+'/' + v, 'utf8');
     if(file)
@@ -25,25 +29,12 @@ function fill(v) {
 
 files.forEach(fill);
 
-var removeDays = {
-	"Mon": 0,
-	"Tue": 1,
-	"Wed": 2,
-	"Thu": 3,
-	"Fri": 4,
-	"Sat": 5,
-	"Sun": 6
-}
-
 function convert(v) {
     var lastUpdate = momentLibrary(v[0].lastupdate);
+    if (lastUpdate.isBefore(dateLimit)) {
+    	return;
+    }
 
-	var copy = moment();
-	var timeDif = parseInt(copy.subtract(removeDays[copy.format('ddd')], 'days').subtract(7, 'weeks').format('x'));
-    if( parseInt(lastUpdate.format('x')) < timeDif){
-		return;
-	}
-    
     var year = lastUpdate.year();
     var week = lastUpdate.week();
     var weekday = lastUpdate.isoWeekday() -1;

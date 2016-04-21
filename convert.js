@@ -44,7 +44,7 @@ function convert(v) {
 
 	var copy = lastUpdate;
 	var timeDif =  parseInt(copy.format('x')) - parseInt(copy.subtract(removeDays[copy.format('ddd')], 'days').subtract(7, 'weeks').format('x'));
-    if(timeDif > 18408222000){
+    if(timeDif > 4233600000){
 		return;
 	}
 

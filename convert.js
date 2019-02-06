@@ -17,6 +17,10 @@ var files = fs.readdirSync(serverSource);
 var jsonObjects = [];
 var file;
 
+var dateLimit = momentLibrary().day("Monday").hour(0).minute(0).subtract(7, 'weeks');
+
+console.log("DateLimit: "+dateLimit.format());
+
 function fill(v) {
     file = fs.readFileSync(serverSource+'/' + v, 'utf8');
     if(file) {
@@ -32,6 +36,10 @@ files.forEach(fill);
 
 function convert(v) {
     var lastUpdate = momentLibrary(v[0].lastupdate);
+    if (lastUpdate.isBefore(dateLimit)) {
+    	return;
+    }
+
     var year = lastUpdate.year();
     var week = lastUpdate.week();
     var weekday = lastUpdate.isoWeekday() -1;

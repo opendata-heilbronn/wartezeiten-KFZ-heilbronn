@@ -19,8 +19,13 @@ var file;
 
 function fill(v) {
     file = fs.readFileSync(serverSource+'/' + v, 'utf8');
-    if(file)
-        jsonObjects.push(JSON.parse(file));
+    if(file) {
+        try {
+            jsonObjects.push(JSON.parse(file));
+        } catch (e) {
+            console.error(v, " => ",e);
+        }
+    }
 }
 
 files.forEach(fill);
